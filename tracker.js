@@ -16,9 +16,15 @@ function updateCounter(link) {
   return counter;
 }
 
+function readCookie(a = 'clicks_counter'){
+    let b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b ? b.pop() : '';
+}
+
+
 function writeToCookie() {
   let counterString = JSON.stringify(counter);
-  document.cookie = "counter" + "=" + counterString;
+  document.cookie = "clicks_counter" + "=" + counterString;
   alert(document.cookie);
 }
 
