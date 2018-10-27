@@ -16,22 +16,27 @@ function updateCounter(link) {
   return counter;
 }
 
-function readCookie(a = 'clicks_counter'){
-    let b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
-    return b ? b.pop() : '';
+function readCookie(a = "clicks_counter") {
+  let b = document.cookie.match("(^|;)\\s*" + a + "\\s*=\\s*([^;]+)");
+  if (b !== null) {
+    let cookie_data = b[b.length - 1];
+    console.log("the cookie data is:" + cookie_data);
+    counter = JSON.parse(cookie_data);
+  }
+  return b ? b.pop() : "";
 }
-
 
 function writeToCookie() {
   let counterString = JSON.stringify(counter);
   document.cookie = "clicks_counter" + "=" + counterString;
-  alert(document.cookie);
+  console.log("cookie data saved!");
 }
 
 let navElements = document.getElementsByClassName(
   "primary-nav__list-item-link"
 );
 
+readCookie();
 for (var i = 0; i < navElements.length; i++) {
   navElements[i].addEventListener("click", function(event) {
     event.preventDefault();
