@@ -1,4 +1,4 @@
-let counter = {}
+let counter = {};
 function apiPostRequest(e, url) {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
@@ -12,12 +12,14 @@ function apiPostRequest(e, url) {
 }
 function updateCounter(link) {
   counter[link] == null ? (counter[link] = 1) : (counter[link] += 1);
-    console.log(counter);
-  }
+  console.log(counter);
+  return counter;
+}
 
-
-function writeToCookie(link) {
-  console.log(link);
+function writeToCookie() {
+  let counterString = JSON.stringify(counter);
+  document.cookie = "counter" + "=" + counterString;
+  alert(document.cookie);
 }
 
 let navElements = document.getElementsByClassName(
@@ -34,25 +36,3 @@ for (var i = 0; i < navElements.length; i++) {
     updateCounter(event.target.innerText);
   });
 }
-
-// var navElements = document.getElementsByClassName(“nav-item__link”);
-
-// for (var i = 0; i < navElements.length; i++) {
-
-//  navElements[i].addEventListener(“click”, apiRequest);
-
-// }
-
-// function apiRequest(){
-//  var params = `ln=${event.target.href}&pn=${event.target.innerText}`
-//  var url = ‘https:/tesco.com’
-//  var request = new XMLhttpRequest();
-//  request.open(‘POST’, url, true)
-//  request.setRequestHeader(“Content-type”, “application/x-www-form-urlencoded”);
-//  request.send(params);
-//  alert(‘hello’)
-// }
-
-// function setSessionCookie(){
-//  document.cookie =“counter=” + 1 + “;pn=” + event.target.innerText + “;ln=” + event.target.href + “;max-age=” + (60 * 60 * 24 *30) + “;”
-// }
