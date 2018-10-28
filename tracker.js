@@ -10,13 +10,13 @@ function apiPostRequest(e, url) {
   xhr.send(data);
   console.log(data);
 }
-function updateCounter(link) {
+let updateCounter = link => {
   counter[link] == null ? (counter[link] = 1) : (counter[link] += 1);
   console.log(counter);
   return counter;
-}
+};
 
-function readCookie(a = "clicks_counter") {
+let readCounterCookie = (a = "clicks_counter") => {
   let b = document.cookie.match("(^|;)\\s*" + a + "\\s*=\\s*([^;]+)");
   if (b !== null) {
     let cookie_data = b[b.length - 1];
@@ -24,19 +24,19 @@ function readCookie(a = "clicks_counter") {
     counter = JSON.parse(cookie_data);
   }
   return b ? b.pop() : "";
-}
+};
 
-function writeToCookie() {
+let writeToCookie = () => {
   let counterString = JSON.stringify(counter);
   document.cookie = "clicks_counter" + "=" + counterString;
   console.log("cookie data saved!");
-}
+};
 
 let navElements = document.getElementsByClassName(
   "primary-nav__list-item-link"
 );
 
-readCookie();
+readCounterCookie();
 for (var i = 0; i < navElements.length; i++) {
   navElements[i].addEventListener("click", function(event) {
     event.preventDefault();
