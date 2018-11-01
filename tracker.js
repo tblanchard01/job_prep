@@ -14,10 +14,6 @@ function apiPostRequest(url, href, page_name) {
 let updateCounter = link => {
   counter[link] == null ? (counter[link] = 1) : (counter[link] += 1);
   console.log(counter);
-  createWidget(counter)
-
-
-
 };
 
 
@@ -53,17 +49,24 @@ function apiPostRequest(url, href, page_name) {
 let createWidget = (counterObject) => {
 
   let clicksWidget = document.createElement("div");
+  clicksWidget.id = "clicksWidget"
   clicksWidget.style.width = "20%";
   clicksWidget.style.height = "15%";
   clicksWidget.style.padding = "20px";
-  clicksWidget.style.margin = "10%"; 
+  clicksWidget.style.margin = "10%";
   clicksWidget.style.borderRadius = "10px";
   clicksWidget.style.background = "red";
   clicksWidget.style.color = "white";
   clicksWidget.innerHTML = "hits on main menu bar:<br/><br/>" + JSON.stringify(counterObject)
+
   document.body.insertBefore(clicksWidget, null)
+}
+
+let updateWidget = (counterObject) => {
+  document.getElementById("clicksWidget").innerHTML = "hits on main menu bar:<br/><br/>" + JSON.stringify(counterObject)
 
 }
+
 
 let navElements = document.getElementsByClassName(
   "primary-nav__list-item-link"
@@ -76,8 +79,11 @@ for (var i = 0; i < navElements.length; i++) {
     console.log(event.target.href);
     console.log(event.target.innerText);
 
-    apiPostRequest(event, "www.tesco.com", event.target.href, event.target.innerText);
+    // apiPostRequest(event, "www.tesco.com", event.target.href, event.target.innerText);
     updateCounter(event.target.innerText);
+    updateWidget(counter)
+
+
   });
 
 }
