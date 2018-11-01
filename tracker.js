@@ -1,4 +1,5 @@
 let counter = {};
+// let output = counter.JSON.stringify
 function apiPostRequest(url, href, page_name) {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
@@ -13,8 +14,12 @@ function apiPostRequest(url, href, page_name) {
 let updateCounter = link => {
   counter[link] == null ? (counter[link] = 1) : (counter[link] += 1);
   console.log(counter);
-  return counter;
+  createWidget(counter)
+
+
+
 };
+
 
 let readCounterCookie = (a = "clicks_counter") => {
   let b = document.cookie.match("(^|;)\\s*" + a + "\\s*=\\s*([^;]+)");
@@ -45,22 +50,27 @@ function apiPostRequest(url, href, page_name) {
   console.log(data);
 }
 
-// let createWidget = () => {
-//   let div = document.createElement("div");
-//   div.style.width = "100px";
-//   div.style.height = "100px";
-//   div.style.background = "red";
-//   div.style.color = "white";
-//   div.innerHTML = "Hello";
-//   document.body.appendChild(div)
+let createWidget = (counterObject) => {
 
-// }
+  let div = document.createElement("div");
+  div.style.width = "20%";
+  div.style.height = "15%";
+  div.style.padding = "20px";
+  div.style.borderRadius = "10px";
+  div.style.background = "red";
+  div.style.color = "white";
+  div.innerHTML = "hits on main menu bar" + JSON.stringify(counterObject)
+
+  document.body.insertBefore(div, null)
+
+
+}
 
 let navElements = document.getElementsByClassName(
   "primary-nav__list-item-link"
 );
-// createWidget(); 
 readCounterCookie();
+createWidget(counter);
 for (var i = 0; i < navElements.length; i++) {
   navElements[i].addEventListener("click", function (event) {
     event.preventDefault();
@@ -70,6 +80,7 @@ for (var i = 0; i < navElements.length; i++) {
     apiPostRequest(event, "www.tesco.com", event.target.href, event.target.innerText);
     updateCounter(event.target.innerText);
   });
+
 }
 
 
