@@ -52,17 +52,16 @@ function apiPostRequest(url, href, page_name) {
 
 let createWidget = (counterObject) => {
 
-  let div = document.createElement("div");
-  div.style.width = "20%";
-  div.style.height = "15%";
-  div.style.padding = "20px";
-  div.style.borderRadius = "10px";
-  div.style.background = "red";
-  div.style.color = "white";
-  div.innerHTML = "hits on main menu bar" + JSON.stringify(counterObject)
-
-  document.body.insertBefore(div, null)
-
+  let clicksWidget = document.createElement("div");
+  clicksWidget.style.width = "20%";
+  clicksWidget.style.height = "15%";
+  clicksWidget.style.padding = "20px";
+  clicksWidget.style.margin = "10%"; 
+  clicksWidget.style.borderRadius = "10px";
+  clicksWidget.style.background = "red";
+  clicksWidget.style.color = "white";
+  clicksWidget.innerHTML = "hits on main menu bar:<br/><br/>" + JSON.stringify(counterObject)
+  document.body.insertBefore(clicksWidget, null)
 
 }
 
