@@ -12,11 +12,24 @@
   'use strict';
 
 let counter = {};
-let addMenuTracking = () => {
-let navElements = document.getElementsByClassName(
-  "primary-nav__list-item-link"
-);
+let addMenuTracking = (link) => {
+let navElements = document.getElementsByClassName(link);
+for (var i = 0; i < navElements.length; i++) {
+  navElements[i].addEventListener("click", function (event) {
+    event.preventDefault();
+    console.log(event.target.href);
+    console.log(event.target.innerText);
+    apiPostRequest(event, "www.tesco.com", event.target.href, event.target.innerText);
+    updateCounter(event.target.innerText);
+    updateWidget(counter)
+  
+  
+  });
+  
+  }
+
 }
+// "primary-nav__list-item-link" 
 function apiPostRequest(url, href, page_name) {
 var xhr = new XMLHttpRequest();
 xhr.open("POST", url, true);
@@ -83,26 +96,23 @@ document.getElementById("clicksWidget").innerHTML = "hits on main menu bar:<br/>
 
 }
 
-
-let navElements = document.getElementsByClassName(
-"primary-nav__list-item-link"
-);
+addMenuTracking("primary-nav__list-item-link")
 readCounterCookie();
 createWidget(counter);
-for (var i = 0; i < navElements.length; i++) {
-navElements[i].addEventListener("click", function (event) {
-  event.preventDefault();ß
-  console.log(event.target.href);
-  console.log(event.target.innerText);
+// for (var i = 0; i < navElements.length; i++) {
+// navElements[i].addEventListener("click", function (event) {
+//   event.preventDefault();ß
+//   console.log(event.target.href);
+//   console.log(event.target.innerText);
 
-  apiPostRequest(event, "www.tesco.com", event.target.href, event.target.innerText);
-  updateCounter(event.target.innerText);
-  updateWidget(counter)
+//   apiPostRequest(event, "www.tesco.com", event.target.href, event.target.innerText);
+//   updateCounter(event.target.innerText);
+//   updateWidget(counter)
 
 
-});
+// });
 
-}
+// }
 
 
 
