@@ -11,8 +11,7 @@
 (function() {
   'use strict';
 
-  let counter = {};
-// let output = counter.JSON.stringify
+let counter = {};
 let addMenuTracking = () => {
 let navElements = document.getElementsByClassName(
   "primary-nav__list-item-link"
@@ -69,18 +68,11 @@ let createWidget = (counterObject) => {
 let clicksWidget = document.createElement("div");
 
 clicksWidget.id = "clicksWidget"
-/*clicksWidget.style.width = "20%";
-clicksWidget.style.height = "15%";
-clicksWidget.style.padding = "20px";
-clicksWidget.style.margin = "10%";
-clicksWidget.style.borderRadius = "10px";
-clicksWidget.style.background = "red";
-clicksWidget.style.color = "white";*/
 clicksWidget.innerHTML = "hits on main menu bar:<br/><br/>" + JSON.stringify(counterObject).substring(1,JSON.stringify(counterObject).length-1)
 
 document.body.insertBefore(clicksWidget, null);
   // add styles
-  let styles = "#clicksWidget{position:fixed!important;z-index :9999;top:10px;left:20px;width : 200px;height:100px;padding:20px;margin : 10%;border-radius : 10px;background:#f00;color:#fff;}";
+  let styles = "#clicksWidget{position:fixed!important;z-index :9999;top:10px;left:20px;width : 200px;height:100px;padding:20px;margin : 10%;border-radius : 10px;background:#f00;color:#fff; box-shadow: 0 8px 6px -6px black;}";
   let stls = document.createElement("style");
   stls.textContent = styles;
   document.head.appendChild(stls);
