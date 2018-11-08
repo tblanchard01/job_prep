@@ -91,7 +91,7 @@ readCounterCookie();
 createWidget(counter);
 for (var i = 0; i < navElements.length; i++) {
 navElements[i].addEventListener("click", function (event) {
-  event.preventDefault();
+  event.preventDefault();ß
   console.log(event.target.href);
   console.log(event.target.innerText);
 
